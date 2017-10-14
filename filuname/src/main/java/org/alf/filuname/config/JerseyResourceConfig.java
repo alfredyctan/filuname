@@ -1,4 +1,4 @@
-package org.alf.filuname.jersey;
+package org.alf.filuname.config;
 
 
 import java.util.List;
@@ -16,11 +16,11 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 @Component
 @ApplicationPath("/")
-public class JerseyConfig extends ResourceConfig {
+public class JerseyResourceConfig extends ResourceConfig {
 
-	private static final Logger logger = LoggerFactory.getLogger(JerseyConfig.class);
+	private static final Logger logger = LoggerFactory.getLogger(JerseyResourceConfig.class);
 
-	public JerseyConfig(@Context ServletContext context) {
+	public JerseyResourceConfig(@Context ServletContext context) {
 		logger.info("Jersey register  {}", context);
 		WebApplicationContext appCtx = WebApplicationContextUtils.getWebApplicationContext(context);
 		List<?> resources = appCtx.getBean("restfulResources", List.class);

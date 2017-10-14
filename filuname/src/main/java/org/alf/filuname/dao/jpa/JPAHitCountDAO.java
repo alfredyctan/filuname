@@ -15,6 +15,9 @@ public class JPAHitCountDAO implements HitCountDAO {
 
 	private EntityManagerFactory factory;
 
+	public JPAHitCountDAO() {
+	}
+	
 	public JPAHitCountDAO(Map<String, Object> jpaProps) {
 		this.factory = Persistence.createEntityManagerFactory("Hibernate", jpaProps);
 	}
@@ -28,5 +31,4 @@ public class JPAHitCountDAO implements HitCountDAO {
 		query.setParameter(2, date);
 		return (List) query.getResultList();
 	}
-
 }
