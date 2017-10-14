@@ -9,7 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.alf.filuname.model.Visit;
+import org.alf.filuname.model.HitCount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -24,10 +24,10 @@ public class JaxrsReportService implements ReportService {
 	@Path("/request")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public List<Visit> requestReport(@QueryParam("date") String date) {
+	public List<HitCount> requestReport(@QueryParam("date") String date) {
 		logger.info("report" + date);
-		List<Visit> visits = new LinkedList<>();
-		visits.add(new org.alf.filuname.model.impl.Visit());
+		List<HitCount> visits = new LinkedList<>();
+		visits.add(new org.alf.filuname.model.impl.HitCount());
 		return visits;
 	}
 

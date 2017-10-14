@@ -2,10 +2,10 @@ package org.alf.filuname.report;
 
 import java.util.List;
 
-import org.alf.filuname.model.Visit;
+import org.alf.filuname.model.HitCount;
 
 public interface ReportService {
 
-	public List<Visit> requestReport(String date);
+	public List<HitCount> requestReport(String date);
 	
 }
