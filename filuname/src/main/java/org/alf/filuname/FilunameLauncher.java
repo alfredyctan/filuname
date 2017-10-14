@@ -1,0 +1,15 @@
+package org.alf.filuname;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ImportResource;
+
+@ImportResource("classpath:/bootstrap.xml")
+@SpringBootApplication
+public class FilunameLauncher extends SpringBootServletInitializer {
+
+	public static void main(String[] args) {
+		SpringApplication.run(FilunameLauncher.class, args);
+	}
+}
