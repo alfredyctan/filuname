@@ -18,17 +18,33 @@ public class JPAHitCountDAO implements HitCountDAO {
 	public JPAHitCountDAO() {
 	}
 	
+	public JPAHitCountDAO(EntityManagerFactory factory) {
+		this.factory = factory;
+	}
+
 	public JPAHitCountDAO(Map<String, Object> jpaProps) {
 		this.factory = Persistence.createEntityManagerFactory("Hibernate", jpaProps);
 	}
 
 	@Override
-	public List<HitCount> getTopHitCount(String date, int rank) {
+	public List<HitCount> getTopHitCounts(String date, int rank) {
 		EntityManager entityManager = factory.createEntityManager();
-		Query query = entityManager.createNativeQuery("SELECT TOP ? * FROM HitCount WHERE visit_date = ?",
-				org.alf.filuname.model.impl.HitCount.class);
+		Query query = entityManager.createNativeQuery(
+			"SELECT TOP ? * FROM HitCount WHERE visit_date = ?",
+			org.alf.filuname.model.impl.HitCount.class
+		);
 		query.setParameter(1, rank);
 		query.setParameter(2, date);
+		return (List) query.getResultList();
+	}
+
+	@Override
+	public List<HitCount> getHitCounts() {
+		EntityManager entityManager = factory.createEntityManager();
+		Query query = entityManager.createNativeQuery(
+			"SELECT * FROM HitCount",
+			org.alf.filuname.model.impl.HitCount.class
+		);
 		return (List) query.getResultList();
 	}
 }

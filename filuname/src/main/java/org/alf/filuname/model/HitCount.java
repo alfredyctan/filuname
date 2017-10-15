@@ -12,8 +12,14 @@ public interface HitCount {
 
 	public Date getVisitDate();
 
+	public void setVisitDate(Date visitDate);
+	
 	public String getWebsite();
 
+	public void setWebsite(String website);
+	
 	public int getCount();
+
+	public void setCount(int count);
 
 }

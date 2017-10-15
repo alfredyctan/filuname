@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:batch="http://www.springframework.org/schema/batch" 
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+       	http://www.springframework.org/schema/beans 
+       	http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/batch
+		http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<bean id="scheduledImportService" class="org.alf.filuname.batch.ScheduledImportService">
+		<property name="jobLauncher" ref="jobLauncher" />
+		<property name="job" ref="job" />
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
+	<bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+	<bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository" />
+		<!-- <property name="taskExecutor"> -->
+		<!-- <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler"/> -->
+		<!-- </property> -->
+	</bean>
+
+	<batch:job id="job">
+		<batch:step id="import">
+			<batch:tasklet transaction-manager="jpaTransactionManager">
+				<batch:chunk reader="itemReader" writer="itemWriter" processor="itemProcessor" commit-interval="${import.batch-size}" />
+				<!-- <batch:transaction-attributes isolation="DEFAULT" propagation="REQUIRED" timeout="30" /> -->
+			</batch:tasklet>
+		</batch:step>
+	</batch:job>
+	<bean id="dateEditor" class="org.springframework.beans.propertyeditors.CustomDateEditor">
+		<constructor-arg>
+			<bean class="java.text.SimpleDateFormat">
+				<constructor-arg value="yyyy-MM-dd" />
+			</bean>
+		</constructor-arg>
+		<constructor-arg value="true" />
+	</bean>
+	<bean id="hitCount" class="org.alf.filuname.model.impl.HitCount" scope="prototype" />
+	<bean id="itemReader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+		<property name="resource" value="#{jobParameters['import-file']}" />
+		<property name="linesToSkip" value="1" />
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<property name="lineTokenizer">
+					<bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+						<property name="names" value="visitDate,website,count" />
+						<property name="delimiter" value="|" />
+					</bean>
+				</property>
+				<property name="fieldSetMapper">
+					<bean class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+						<property name="prototypeBeanName" value="hitCount" />
+						<property name="customEditors">
+							<map>
+								<entry key="java.util.Date" value-ref="dateEditor" />
+							</map>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<bean id="itemProcessor" class="org.springframework.batch.item.support.PassThroughItemProcessor" />
+	<bean id="itemWriter" class="org.springframework.batch.item.database.JpaItemWriter">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<!-- Run every 5 seconds -->
+	<!-- <task:scheduled-tasks> -->
+	<!-- <task:scheduled ref="scheduledImportService" method="import" fixed-delay="5000" /> -->
+	<!-- </task:scheduled-tasks> -->
+</beans>

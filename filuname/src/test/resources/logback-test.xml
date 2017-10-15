@@ -10,6 +10,7 @@
 	</appender>
 
 	<logger name="org.eclipse.jetty" level="INFO"/>
+	<logger name="org.springframework.batch" level="INFO"/>
 
 	<root level="INFO">
 		<appender-ref ref="ASYNC" />

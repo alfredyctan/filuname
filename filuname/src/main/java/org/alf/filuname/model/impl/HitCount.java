@@ -63,16 +63,29 @@ public class HitCount implements org.alf.filuname.model.HitCount {
 	}
 
 	@Override
+	public void setVisitDate(Date visitDate) {
+		this.visitDate = visitDate;
+	}
+	
+	@Override
 	public String getWebsite() {
 		return website;
 	}
 
 	@Override
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	
+	@Override
 	public int getCount() {
 		return count;
 	}
 
-	
+	@Override
+	public void setCount(int count) {
+		this.count = count;
+	}
 	
 	@Override
 	public int hashCode() {

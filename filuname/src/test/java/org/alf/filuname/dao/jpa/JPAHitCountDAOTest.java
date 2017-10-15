@@ -49,7 +49,7 @@ public class JPAHitCountDAOTest {
 	public void testGetTopHitCount() {
 		JUnit4Util.startCurrentTest(getClass());
 
-		List<HitCount> actual = dao.getTopHitCount("2016-01-06", 3);
+		List<HitCount> actual = dao.getTopHitCounts("2016-01-06", 3);
 
 		System.out.println("ACTUAL : " + actual);
 

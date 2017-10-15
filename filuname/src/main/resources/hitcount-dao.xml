@@ -12,6 +12,6 @@
     	http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
 	<bean id="hitCountDAO" class="org.alf.filuname.dao.jpa.JPAHitCountDAO">
-		<constructor-arg ref="jpaProps" />
+		<constructor-arg ref="entityManagerFactory" />
 	</bean>
 </beans>
