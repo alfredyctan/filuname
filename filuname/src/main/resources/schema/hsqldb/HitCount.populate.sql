@@ -1,1 +1,1 @@
-VALUES (current_timestamp);
+/* this is placeholder for initial load in unit test */
