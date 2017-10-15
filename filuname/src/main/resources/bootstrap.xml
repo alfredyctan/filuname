@@ -5,7 +5,7 @@
 	<bean id="bootStrap" class="org.alf.filuname.service.InlineService" init-method="init" destroy-method="dispose">
 		<property name="services">
 			<list>
-				
+
 			</list>
 		</property>
 	</bean>
@@ -13,10 +13,16 @@
 	<bean id="restfulResources" class="java.util.LinkedList">
 		<constructor-arg>
 			<list>
-				<ref bean="reportService"/>
+				<ref bean="reportService" />
 			</list>
 		</constructor-arg>
 	</bean>
-	
-	<bean id="reportService" class="org.alf.filuname.report.JaxrsReportService" />
+
+	<bean id="reportService" class="org.alf.filuname.report.JaxrsReportService">
+		<property name="reportService">
+			<bean class="org.alf.filuname.report.DAOReportService">
+				<property name="hitCountDAO" ref="hitCountDAO" />
+			</bean>
+		</property>
+	</bean>
 </beans>

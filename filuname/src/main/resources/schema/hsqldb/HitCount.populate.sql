@@ -1,0 +1,1 @@
+VALUES (current_timestamp);

@@ -54,16 +54,16 @@ public class BatchFileImportServiceTest {
 		List<HitCount> actual = dao.getHitCounts();
 
 		assertThat("List Actual Is Subset Of Expect Without Order", actual,
-				containsInAnyOrder(
-					new org.alf.filuname.model.impl.HitCount("2016-01-06", "au.yahoo.com", 11492756),
-					new org.alf.filuname.model.impl.HitCount("2016-01-06", "mail.live.com", 21536612),
-					new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.bing.com", 14065457),
-					new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.ebay.com.au", 19831166),
-					new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.facebook.com", 104346720),
-					new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.wikipedia.org", 13246531),
-					new org.alf.filuname.model.impl.HitCount("2016-01-27", "www.ebay.com.au", 23154653)
-				)
-			);
+			containsInAnyOrder(
+				new org.alf.filuname.model.impl.HitCount("2016-01-06", "au.yahoo.com", 11492756),
+				new org.alf.filuname.model.impl.HitCount("2016-01-06", "mail.live.com", 21536612),
+				new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.bing.com", 14065457),
+				new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.ebay.com.au", 19831166),
+				new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.facebook.com", 104346720),
+				new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.wikipedia.org", 13246531),
+				new org.alf.filuname.model.impl.HitCount("2016-01-27", "www.ebay.com.au", 23154653)
+			)
+		);
 
 		
 		JUnit4Util.endCurrentTest(getClass());

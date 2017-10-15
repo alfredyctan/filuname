@@ -20,15 +20,18 @@ public class JaxrsReportService implements ReportService {
 
 	private static final Logger logger = LoggerFactory.getLogger(JaxrsReportService.class);
 	
+	private ReportService reportService;
+	
 	@GET
 	@Path("/request")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
 	public List<HitCount> requestReport(@QueryParam("date") String date) {
-		logger.info("report" + date);
-		List<HitCount> visits = new LinkedList<>();
-		visits.add(new org.alf.filuname.model.impl.HitCount());
-		return visits;
+		logger.info("requesting report for date:[{}] from JAX-RS", date);
+		return reportService.requestReport(date);
 	}
-
+	
+	public void setReportService(ReportService reportService) {
+		this.reportService = reportService;
+	}
 }
