@@ -13,12 +13,15 @@
 
 	<bean id="directoryImportService" class="org.alf.filuname.batch.DirectoryImportService">
 		<property name="batchFileImportService" ref="batchFileImportService" />
+		<property name="directory" value="target/import" />
+		<property name="pattern" value=".*\.csv$" />
 	</bean>
 	<bean id="batchFileImportService" class="org.alf.filuname.batch.BatchFileImportService">
 		<property name="jobLauncher" ref="jobLauncher" />
 		<property name="job" ref="job" />
 	</bean>
 
+	<bean id="jobLocator" class="org.springframework.batch.core.configuration.support.MapJobRegistry" />
 	<bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
 		<property name="jobRepository" ref="jobRepository" />
 	</bean>
@@ -47,6 +50,7 @@
 	<bean id="itemReader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
 		<property name="resource" value="#{jobParameters['import-file']}" />
 		<property name="linesToSkip" value="1" />
+		<property name="strict" value="false" />
 		<property name="lineMapper">
 			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
 				<property name="lineTokenizer">

@@ -9,6 +9,6 @@
         http://www.springframework.org/schema/task/spring-task.xsd">
 
 	<task:scheduled-tasks>
-		<task:scheduled ref="directoryImportService" method="trigger" fixed-delay="5000" />
+		<task:scheduled ref="directoryImportService" method="trigger" fixed-delay="5000" initial-delay="5000" />
 	</task:scheduled-tasks>
 </beans>

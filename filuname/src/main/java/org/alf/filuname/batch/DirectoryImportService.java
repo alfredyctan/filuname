@@ -20,8 +20,10 @@ public class DirectoryImportService implements ScheduledService {
 	public void trigger() {
 		logger.info("directory for import [{}{}{}]", directory, File.separator, pattern);
 		String[] filenames = directory.list((file, name)->pattern.matcher(name).matches());
-		for (String filename : filenames) {
-			batchFileImportService.doImport(directory.getPath() + File.separatorChar + filename);
+		if (filenames != null) {
+			for (String filename : filenames) {
+				batchFileImportService.doImport(directory.getPath() + File.separatorChar + filename);
+			}
 		}
 	} 
 

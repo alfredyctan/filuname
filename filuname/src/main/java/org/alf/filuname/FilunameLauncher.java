@@ -5,7 +5,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ImportResource;
 
-@ImportResource("classpath:/bootstrap.xml")
+@ImportResource({
+	"classpath:/bootstrap.xml", 
+	"classpath:/batch-file-import.xml", 
+	"classpath:/scheduler.xml", 
+	"classpath:/datasource.xml", 
+	"classpath:/hitcount-dao.xml"
+})
 @SpringBootApplication
 public class FilunameLauncher extends SpringBootServletInitializer {
 

@@ -1,7 +1,10 @@
 package org.alf.filuname.batch;
 
+import java.io.File;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -27,9 +30,14 @@ public class BatchFileImportService implements ImportService {
 			JobExecution execution = jobLauncher.run(
 				job, 
 				new JobParametersBuilder()
-				.addString("import-file", source)
+				.addString("import-file", "file:" + source)
 				.toJobParameters()
 			);
+			
+			if (execution.getStatus() == BatchStatus.COMPLETED) {
+				new File(source).delete();
+			}
+			
 			logger.info("Exit Status : {}", execution.getStatus());
 		} catch (JobExecutionAlreadyRunningException | 
 				JobRestartException | 
