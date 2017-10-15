@@ -22,7 +22,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "/datasource.xml", "/datasource-test.xml", "/hitcount-dao.xml"})
+@ContextConfiguration({ "/datasource.xml", "/hitcount-dao.xml"})
 public class JPAHitCountDAOTest {
 
 	@Autowired
