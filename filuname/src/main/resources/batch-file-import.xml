@@ -11,30 +11,31 @@
 		http://www.springframework.org/schema/task
         http://www.springframework.org/schema/task/spring-task.xsd">
 
-	<bean id="scheduledImportService" class="org.alf.filuname.batch.ScheduledImportService">
+	<bean id="directoryImportService" class="org.alf.filuname.batch.DirectoryImportService">
+		<property name="batchFileImportService" ref="batchFileImportService" />
+	</bean>
+	<bean id="batchFileImportService" class="org.alf.filuname.batch.BatchFileImportService">
 		<property name="jobLauncher" ref="jobLauncher" />
 		<property name="job" ref="job" />
 	</bean>
 
-	<bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
+	<bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository" />
+	</bean>
 	<bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
 		<property name="transactionManager" ref="transactionManager" />
 	</bean>
-	<bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
-		<property name="jobRepository" ref="jobRepository" />
-		<!-- <property name="taskExecutor"> -->
-		<!-- <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler"/> -->
-		<!-- </property> -->
-	</bean>
+	<bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
 
 	<batch:job id="job">
 		<batch:step id="import">
 			<batch:tasklet transaction-manager="jpaTransactionManager">
 				<batch:chunk reader="itemReader" writer="itemWriter" processor="itemProcessor" commit-interval="${import.batch-size}" />
-				<!-- <batch:transaction-attributes isolation="DEFAULT" propagation="REQUIRED" timeout="30" /> -->
 			</batch:tasklet>
 		</batch:step>
 	</batch:job>
+
+	<bean id="hitCount" class="org.alf.filuname.model.impl.HitCount" scope="prototype" />
 	<bean id="dateEditor" class="org.springframework.beans.propertyeditors.CustomDateEditor">
 		<constructor-arg>
 			<bean class="java.text.SimpleDateFormat">
@@ -43,7 +44,6 @@
 		</constructor-arg>
 		<constructor-arg value="true" />
 	</bean>
-	<bean id="hitCount" class="org.alf.filuname.model.impl.HitCount" scope="prototype" />
 	<bean id="itemReader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
 		<property name="resource" value="#{jobParameters['import-file']}" />
 		<property name="linesToSkip" value="1" />
@@ -72,9 +72,4 @@
 	<bean id="itemWriter" class="org.springframework.batch.item.database.JpaItemWriter">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-
-	<!-- Run every 5 seconds -->
-	<!-- <task:scheduled-tasks> -->
-	<!-- <task:scheduled ref="scheduledImportService" method="import" fixed-delay="5000" /> -->
-	<!-- </task:scheduled-tasks> -->
 </beans>

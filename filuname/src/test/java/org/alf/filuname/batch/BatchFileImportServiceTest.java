@@ -20,11 +20,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 //@TestPropertySource("classpath:/junit.properties")
-@ContextConfiguration({ "classpath:/scheduled-import.xml", "classpath:/datasource.xml", "classpath:/hitcount-dao.xml", "classpath:/properties.xml"})
-public class ScheduledImportServiceTest {
+@ContextConfiguration({ "classpath:/batch-file-import.xml", "classpath:/datasource.xml", "classpath:/hitcount-dao.xml", "classpath:/properties.xml"})
+public class BatchFileImportServiceTest {
 
 	@Autowired
-	private ScheduledImportService service;
+	private BatchFileImportService service;
 	
 	@Autowired
 	private HitCountDAO dao;
@@ -50,7 +50,7 @@ public class ScheduledImportServiceTest {
 	public void testImportFile() {
 		JUnit4Util.startCurrentTest(getClass());
 		
-		service.importFile("classpath:/import/data-junit.csv");
+		service.doImport("classpath:/import/data-junit.csv");
 		List<HitCount> actual = dao.getHitCounts();
 
 		assertThat("List Actual Is Subset Of Expect Without Order", actual,
@@ -68,5 +68,4 @@ public class ScheduledImportServiceTest {
 		
 		JUnit4Util.endCurrentTest(getClass());
 	}
-
 }
