@@ -1,1 +1,1 @@
-var filuname = angular.module('filuname', []);
+var filuname = angular.module('filuname', ['720kb.datepicker']);

@@ -12,7 +12,6 @@ import javax.ws.rs.core.MediaType;
 import org.alf.filuname.model.HitCount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 @Path("/report")
 public class JaxrsReportService implements ReportService {
@@ -27,7 +26,13 @@ public class JaxrsReportService implements ReportService {
 	@Override
 	public List<HitCount> requestReport(@QueryParam("date") String date) {
 		logger.info("requesting report for date:[{}] from JAX-RS", date);
-		return reportService.requestReport(date);
+		try {
+			return reportService.requestReport(date);
+		} catch (Exception e) {
+			logger.error("error on receiving report request, reason:[{}]", e.getMessage());
+			logger.debug("details", e);
+			return new LinkedList<>();
+		}
 	}
 	
 	public void setReportService(ReportService reportService) {

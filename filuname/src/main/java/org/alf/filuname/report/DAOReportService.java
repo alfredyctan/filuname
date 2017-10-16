@@ -14,7 +14,9 @@ public class DAOReportService implements ReportService {
 	private HitCountDAO hitCountDAO;
 	
 	public List<HitCount> requestReport(String date) {
-		return hitCountDAO.getTopHitCounts(date, 5);
+		List<HitCount> hitCounts = hitCountDAO.getTopHitCounts(date, 5);
+		logger.info("total hit counts : [{}]", hitCounts.size());
+		return hitCounts;
 	}
 	
 	public void setHitCountDAO(HitCountDAO hitCountDAO) {

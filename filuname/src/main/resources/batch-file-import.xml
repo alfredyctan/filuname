@@ -13,8 +13,8 @@
 
 	<bean id="directoryImportService" class="org.alf.filuname.batch.DirectoryImportService">
 		<property name="batchFileImportService" ref="batchFileImportService" />
-		<property name="directory" value="target/import" />
-		<property name="pattern" value=".*\.csv$" />
+		<property name="directory" value="${import.scan.directory}" />
+		<property name="pattern" value="${import.scan.pattern}" />
 	</bean>
 	<bean id="batchFileImportService" class="org.alf.filuname.batch.BatchFileImportService">
 		<property name="jobLauncher" ref="jobLauncher" />
