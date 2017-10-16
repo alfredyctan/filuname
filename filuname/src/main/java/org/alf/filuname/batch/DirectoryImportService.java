@@ -19,7 +19,7 @@ public class DirectoryImportService implements ScheduledService {
 	
 	@Override
 	public void trigger() {
-		logger.info("directory for import [{}{}{}]", directory, File.separator, pattern);
+		logger.info("scanning directory [{}{}{}] for import...", directory, File.separator, pattern);
 		String[] filenames = directory.list((file, name)->pattern.matcher(name).matches());
 		if (filenames != null) {
 			for (String filename : filenames) {

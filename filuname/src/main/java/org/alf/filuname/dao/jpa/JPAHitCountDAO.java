@@ -30,7 +30,7 @@ public class JPAHitCountDAO implements HitCountDAO {
 	public List<HitCount> getTopHitCounts(String date, int rank) {
 		EntityManager entityManager = factory.createEntityManager();
 		Query query = entityManager.createNativeQuery(
-			"SELECT TOP ? * FROM HitCount WHERE visit_date = ?",
+			"SELECT TOP ? * FROM HitCount WHERE visit_date = ? ORDER BY count DESC",
 			org.alf.filuname.model.impl.HitCount.class
 		);
 		query.setParameter(1, rank);

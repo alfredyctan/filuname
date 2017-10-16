@@ -36,7 +36,7 @@ public class BootStrapTest {
 	public void testGetTop5() {
 		JUnit4Util.startCurrentTest(getClass());
 		Client c = ClientBuilder.newClient();
-		WebTarget target = c.target("http://localhost:" + port + "/report");
+		WebTarget target = c.target("http://localhost:" + port + "/servlet/report");
 		List<HitCount> actual = target.path("/request").queryParam("date", "2016-01-06").request(MediaType.APPLICATION_JSON).get(new GenericType<List<HitCount>> () {});
 		
 		for (HitCount hitCount : actual) {
@@ -45,11 +45,11 @@ public class BootStrapTest {
 		
 		assertThat("top 5", actual,
 			containsInAnyOrder(
-				new HitCount("2016-01-06", "au.yahoo.com", 11492756),
+				new HitCount("2016-01-06", "www.facebook.com", 104346720),
+				new HitCount("2016-01-06", "www.google.com", 26165099),
 				new HitCount("2016-01-06", "mail.live.com", 21536612),
-				new HitCount("2016-01-06", "www.bing.com", 14065457),
 				new HitCount("2016-01-06", "www.ebay.com.au", 19831166),
-				new HitCount("2016-01-06", "www.facebook.com", 104346720)
+				new HitCount("2016-01-06", "www.bing.com", 14065457)
 			)
 		);
 		

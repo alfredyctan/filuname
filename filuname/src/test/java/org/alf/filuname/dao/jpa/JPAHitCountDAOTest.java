@@ -54,9 +54,9 @@ public class JPAHitCountDAOTest {
 		System.out.println("ACTUAL : " + actual);
 
 		assertThat("List Actual Is Subset Of Expect Without Order", actual,
-			containsInAnyOrder(new org.alf.filuname.model.impl.HitCount("2016-01-06", "au.yahoo.com", 11492756),
+			containsInAnyOrder(new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.facebook.com", 104346720),
 				new org.alf.filuname.model.impl.HitCount("2016-01-06", "mail.live.com", 21536612),
-				new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.bing.com", 14065457)
+				new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.google.com", 26165099)
 			)
 		);
 

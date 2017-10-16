@@ -15,7 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 @Component
-@ApplicationPath("/")
+@ApplicationPath("/servlet")
 public class JerseyResourceConfig extends ResourceConfig {
 
 	private static final Logger logger = LoggerFactory.getLogger(JerseyResourceConfig.class);
