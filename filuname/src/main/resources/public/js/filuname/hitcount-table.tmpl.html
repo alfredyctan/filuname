@@ -1,0 +1,16 @@
+<table class="table">
+	<thead class="thead-inverse">
+		<tr>
+			<th>rank</th>
+			<th>website</th>
+			<th>count</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="hitcount in $ctrl.hitcounts">
+			<td>rank</td>
+			<td>{{hitcount.website}}</td>
+			<td>{{hitcount.count}}</td>
+		</tr>
+	</tbody>
+</table>

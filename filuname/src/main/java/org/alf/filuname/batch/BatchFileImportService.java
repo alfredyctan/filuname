@@ -31,6 +31,7 @@ public class BatchFileImportService implements ImportService {
 				job, 
 				new JobParametersBuilder()
 				.addString("import-file", "file:" + source)
+				.addLong("time", System.currentTimeMillis())
 				.toJobParameters()
 			);
 			

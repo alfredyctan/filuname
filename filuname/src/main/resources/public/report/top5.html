@@ -7,23 +7,9 @@
 <script src="/js/bootstrap/js/bootstrap.min.js"></script>
 <script src="/js/angular/angular.min.js"></script>
 <script src="/js/filuname/filuname.js"></script>
+<script src="/js/filuname/hitcount-table.js"></script>
 </head>
 <body>
-	<table class="table" ng-controller="HitCountListController">
-		<thead class="thead-inverse">
-			<tr>
-				<th>rank</th>
-				<th>website</th>
-				<th>count</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="hitcount in hitcounts">
-				<td>rank</td>
-				<td>{{hitcount.website}}</td>
-				<td>{{hitcount.count}}</td>
-			</tr>
-		</tbody>
-	</table>
+	<hit-count-table></hit-count-table>
 </body>
 </html>
