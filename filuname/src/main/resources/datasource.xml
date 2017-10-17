@@ -15,13 +15,17 @@
 		<property name="password" value="" />
 	</bean>
 	
-<!-- 	<jdbc:embedded-database id="hsqlDataSource" type="HSQL"> -->
-<!-- 		<jdbc:script location="classpath:/schema/hsqldb/HitCount.tbl.sql" /> -->
-<!-- 	</jdbc:embedded-database> -->
-
 	<jdbc:initialize-database data-source="hsqlDataSource">
 		<jdbc:script location="classpath:/schema/hsqldb/HitCount.tbl.sql" />
 		<jdbc:script location="classpath:/schema/hsqldb/HitCount.populate.sql" />
+		<jdbc:script location="classpath:/schema/hsqldb/Users.tbl.sql" />
+		<jdbc:script location="classpath:/schema/hsqldb/Users.populate.sql" />
+		<jdbc:script location="classpath:/schema/hsqldb/UserGroup.tbl.sql" />
+		<jdbc:script location="classpath:/schema/hsqldb/UserGroup.populate.sql" />
+		<jdbc:script location="classpath:/schema/hsqldb/UserGroupAssn.tbl.sql" />
+		<jdbc:script location="classpath:/schema/hsqldb/UserGroupAssn.populate.sql" />
+		<jdbc:script location="classpath:/schema/hsqldb/UserGroupAuthority.tbl.sql" />
+		<jdbc:script location="classpath:/schema/hsqldb/UserGroupAuthority.populate.sql" />
 	</jdbc:initialize-database>
 
 	<bean id="entityManagerFactory" class="javax.persistence.Persistence" factory-method="createEntityManagerFactory">

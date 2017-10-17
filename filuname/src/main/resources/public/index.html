@@ -1,6 +1,27 @@
-<html>
-	<body>
-		<a href="http://localhost:10080/report/top5.html" target="_new">Top 5 Report</a> <br>
-		<a href="http://localhost:10080/report/top5-2.0.html" target="_new">Top 5 Report v2.0</a> <br>
-	</body>
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<script src="/js/jquery/jquery.min.js"></script>
+<script src="/js/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/js/bootstrap/css/bootstrap.min.css"></link>
+</head>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Menu</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="/report/top5.html" target="_new">Top 5 Report</a></li>
+				<li>
+					<form id="shutdown" action="http://127.0.0.1:9001/shutdown" method="POST">
+					</form>
+					<a href="#" onclick="document.forms['shutdown'].submit();">Shutdown</a>
+				</li>
+				<li><a href="/login" target="_new">Login</a></li>
+				<li><a href="/logout" target="_new">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+</body>
 </html>
