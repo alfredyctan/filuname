@@ -1,0 +1,6 @@
+
+Set-Cookie	
+JSESSIONID=node014a33jiudqhp3w17ak5unbmnr1.node0;Path=/
+
+Cookie	
+JSESSIONID=node014a33jiudqhp3w17ak5unbmnr1.node0

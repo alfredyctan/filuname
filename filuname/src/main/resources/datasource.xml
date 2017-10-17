@@ -9,7 +9,6 @@
     	http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
 	<bean id="hsqlDataSource" class="org.hsqldb.jdbc.JDBCDataSource">
-<!-- 		<property name="driverClassName" value="org.hsqldb.jdbcDriver" /> -->
 		<property name="url" value="jdbc:hsqldb:mem:memtestdb" />
 		<property name="user" value="sa" />
 		<property name="password" value="" />

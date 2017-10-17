@@ -16,10 +16,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-//@TestPropertySource("classpath:/junit.properties")
 @ContextConfiguration({ "classpath:/batch-file-import.xml", "classpath:/datasource.xml", "classpath:/hitcount-dao.xml", "classpath:/properties.xml"})
 public class BatchFileImportServiceTest {
 

@@ -7,7 +7,7 @@
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>junit.properties</value>
+				<value>application-test.properties</value>
 			</list>
 		</property>
 	</bean>
