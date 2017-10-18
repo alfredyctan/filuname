@@ -1,0 +1,30 @@
+<configuration>
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%tid][%-5level][%logger{36}] %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="SQL" class="ch.qos.logback.core.FileAppender">
+		<file>target/hibnerate-sql.log</file>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread][%-5level][%logger{36}] %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="CONSOLE" />
+	</appender>
+
+	<appender name="ASYNC-SQL" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="SQL" />
+	</appender>
+
+	<logger name="org.hibernate.SQL" level="TRACE" additivity="false">
+		<appender-ref ref="ASYNC-SQL" />
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="ASYNC" />
+	</root>
+</configuration>
