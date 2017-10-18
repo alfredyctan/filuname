@@ -51,12 +51,14 @@ public class JPAHitCountDAOTest {
 
 		List<HitCount> actual = dao.getTopHitCounts("2016-01-06", 3);
 
-		System.out.println("ACTUAL : " + actual);
+		for (HitCount hitCount : actual) {
+			System.out.println("ACTUAL : " + hitCount);
+		}
 
 		assertThat("List Actual Is Subset Of Expect Without Order", actual,
-			containsInAnyOrder(new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.facebook.com", 104346720),
-				new org.alf.filuname.model.impl.HitCount("2016-01-06", "mail.live.com", 21536612),
-				new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.google.com", 26165099)
+			containsInAnyOrder(new org.alf.filuname.model.impl.HitCount("2016-01-06", "ninemsn.com.au", 21734381),
+				new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.ebay.com.au", 19831166),
+				new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.bing.com", 14065457)
 			)
 		);
 

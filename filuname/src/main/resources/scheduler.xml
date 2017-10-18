@@ -10,5 +10,6 @@
 
 	<task:scheduled-tasks>
 		<task:scheduled ref="directoryImportService" method="trigger" fixed-delay="${import.scan.interval}" initial-delay="5000" />
+		<task:scheduled ref="exclusionService" method="trigger" fixed-delay="${exclusion.api.interval}" initial-delay="5000" />
 	</task:scheduled-tasks>
 </beans>

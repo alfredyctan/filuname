@@ -8,8 +8,10 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource({
 	"classpath:/bootstrap.xml", 
 	"classpath:/batch-file-import.xml", 
+	"classpath:/exclusion-import.xml", 
 	"classpath:/scheduler.xml", 
 	"classpath:/datasource.xml", 
+	"classpath:/exclusion-dao.xml",
 	"classpath:/hitcount-dao.xml"
 })
 @SpringBootApplication

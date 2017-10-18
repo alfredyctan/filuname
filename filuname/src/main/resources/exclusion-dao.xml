@@ -5,7 +5,7 @@
        	http://www.springframework.org/schema/beans 
        	http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="hitCountDAO" class="org.alf.filuname.dao.jpa.JPAHitCountDAO">
+	<bean id="exclusionDAO" class="org.alf.filuname.dao.jpa.JPAExclusionDAO">
 		<constructor-arg ref="entityManagerFactory" />
 	</bean>
 </beans>

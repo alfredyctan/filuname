@@ -30,7 +30,12 @@ public class JPAHitCountDAO implements HitCountDAO {
 	public List<HitCount> getTopHitCounts(String date, int rank) {
 		EntityManager entityManager = factory.createEntityManager();
 		Query query = entityManager.createNativeQuery(
-			"SELECT TOP ? * FROM HitCount WHERE visit_date = ? ORDER BY count DESC",
+			"SELECT TOP ? h.* FROM HitCount h LEFT JOIN Exclusion e "
+			+ "ON h.website = e.host "
+			+ "WHERE h.visit_date = ? AND "
+			+ "(excluded_since IS NULL OR excluded_since > visit_date) AND " // before excluded_since if exist  
+			+ "(excluded_till IS NULL OR excluded_till < visit_date) "       // and after excluded_till if exist
+			+ "ORDER BY count DESC",
 			org.alf.filuname.model.impl.HitCount.class
 		);
 		query.setParameter(1, rank);

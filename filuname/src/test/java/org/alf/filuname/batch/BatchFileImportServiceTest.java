@@ -62,7 +62,8 @@ public class BatchFileImportServiceTest {
 				new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.facebook.com", 104346720),
 				new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.wikipedia.org", 13246531),
 				new org.alf.filuname.model.impl.HitCount("2016-01-27", "www.ebay.com.au", 23154653),
-				new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.google.com", 26165099)
+				new org.alf.filuname.model.impl.HitCount("2016-01-06", "www.google.com", 26165099),
+				new org.alf.filuname.model.impl.HitCount("2016-01-06", "ninemsn.com.au", 21734381)
 			)
 		);
 

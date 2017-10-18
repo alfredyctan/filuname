@@ -17,6 +17,8 @@
 	<jdbc:initialize-database data-source="hsqlDataSource">
 		<jdbc:script location="classpath:/schema/hsqldb/HitCount.tbl.sql" />
 		<jdbc:script location="classpath:/schema/hsqldb/HitCount.populate.sql" />
+		<jdbc:script location="classpath:/schema/hsqldb/Exclusion.tbl.sql" />
+		<jdbc:script location="classpath:/schema/hsqldb/Exclusion.populate.sql" />
 		<jdbc:script location="classpath:/schema/hsqldb/Users.tbl.sql" />
 		<jdbc:script location="classpath:/schema/hsqldb/Users.populate.sql" />
 		<jdbc:script location="classpath:/schema/hsqldb/UserGroup.tbl.sql" />

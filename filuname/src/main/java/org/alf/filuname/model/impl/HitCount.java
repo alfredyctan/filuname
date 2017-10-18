@@ -142,36 +142,6 @@ public class HitCount implements org.alf.filuname.model.HitCount {
 
 		private String website;
 
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + ((visitDate == null) ? 0 : visitDate.hashCode());
-			result = prime * result + ((website == null) ? 0 : website.hashCode());
-			return result;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			PrimaryKey other = (PrimaryKey) obj;
-			if (visitDate == null) {
-				if (other.visitDate != null)
-					return false;
-			} else if (visitDate.getTime() != other.visitDate.getTime())
-				return false;
-			if (website == null) {
-				if (other.website != null)
-					return false;
-			} else if (!website.equals(other.website))
-				return false;
-			return true;
-		}
 	}
 }
 
