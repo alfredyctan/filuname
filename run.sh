@@ -13,4 +13,8 @@ echo "if you need proxy to access the exclusion api, update the proxy configurat
 echo "csv import : filuname/target/filuname/1.0.0-SNAPSHOT/import"
 echo "Frontend : http://localhost:10080/index.html"
 echo "Login : admin/admin, user1/user1, user2/user2"
+echo "update the "
+echo "    filuname/target/filuname/1.0.0-SNAPSHOT/schema/hsqldb/Exclusion.populate.sql"
+echo "    and the exclusion.api.interval in filuname/target/filuname/1.0.0-SNAPSHOT/config/application.properties"
+echo "if you want to skip the exclusion list from api"
 echo "the application is started"
