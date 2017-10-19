@@ -10,6 +10,8 @@ import javax.ws.rs.core.MediaType;
 import org.alf.filuname.dao.ExclusionDAO;
 import org.alf.filuname.model.impl.Exclusion;
 import org.alf.filuname.service.ScheduledService;
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.ClientProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,17 +28,24 @@ public class JaxrsExclusionService implements ScheduledService {
 	public JaxrsExclusionService() {
 		client = ClientBuilder.newClient();
 	}
+
+	public JaxrsExclusionService(String proxy) {
+		client = ClientBuilder.newClient(new ClientConfig().property(ClientProperties.PROXY_URI, proxy));
+	}
 	
 	@Override
 	public void trigger() {
-		
-		logger.info("retrieving exclusions from target:[{}]", url);
-		List<Exclusion> exclusions = client.target(url).request(MediaType.APPLICATION_JSON).get(new GenericType<List<Exclusion>> () {});
-		logger.info("importing [{}] exclusion(s)", exclusions.size());
-		for (Exclusion exclusion : exclusions) {
-			logger.info("{}", exclusion);
+		try {
+			logger.info("retrieving exclusions from target:[{}]", url);
+			List<Exclusion> exclusions = client.target(url).request(MediaType.APPLICATION_JSON).get(new GenericType<List<Exclusion>> () {});
+			logger.info("importing [{}] exclusion(s)", exclusions.size());
+			for (Exclusion exclusion : exclusions) {
+				logger.info("{}", exclusion);
+			}
+			exclusionDAO.replace((List)exclusions);
+		} catch (Exception e) {
+			logger.error("error on retrieving exclusions", e);
 		}
-		exclusionDAO.replace((List)exclusions);
 	}
 
 	public void setUrl(String url) {
