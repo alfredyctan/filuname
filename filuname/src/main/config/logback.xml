@@ -1,5 +1,5 @@
 <configuration>
-	<include resource="env/local/logback-appender.xml" />
+	<include resource="env/${app.env}/logback-appender.xml" />
 
 	<appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
 		<appender-ref ref="MAIN" />

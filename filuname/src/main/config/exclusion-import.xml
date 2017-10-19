@@ -6,6 +6,8 @@
        	http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="exclusionService" class="org.alf.filuname.exclusion.JaxrsExclusionService">
+		<!-- add proxy if required -->
+		<!-- <constructor-arg value="proxy.com:8080"/> -->
 		<property name="exclusionDAO" ref="exclusionDAO" />
 		<property name="url" value="${exclusion.api.url}" />
 	</bean>

@@ -77,10 +77,6 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>assembly-local</id>
-						<phase>compile</phase>
-					</execution>
-					<execution>
 						<id>assembly-package</id>
 						<phase>package</phase>
 					</execution>

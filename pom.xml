@@ -48,12 +48,21 @@
 			</resource>
 			<resource>
 				<directory>src/main/scripts</directory>
+				<excludes>
+					<exclude>**</exclude>
+				</excludes>
 			</resource>
 			<resource>
 				<directory>src/main/filters</directory>
+				<excludes>
+					<exclude>**</exclude>
+				</excludes>
 			</resource>
 			<resource>
 				<directory>src/assembly</directory>
+				<excludes>
+					<exclude>**</exclude>
+				</excludes>
 			</resource>
 		</resources>
 		<testResources>

@@ -1,0 +1,23 @@
+<included>
+	<appender name="MAIN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread][%-5level][%logger{36}] %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>log/${app.name}.%d{yyyy-MM-dd}.log.%i</fileNamePattern>
+			<maxFileSize>500MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="SQL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread][%-5level][%logger{36}] %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>log/${app.name}.hibnerate-sql.%d{yyyy-MM-dd}.log.%i</fileNamePattern>
+			<maxFileSize>500MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+	</appender>
+</included>
